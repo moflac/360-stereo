@@ -22,7 +22,7 @@
         <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
         <img id="cubes" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
         <img id="sechelt" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
-
+		<img id="croix" crossorigin="anonymous" src="IMG_20160711_120611.vr.jpg">
         <!-- Image link template to be reused. -->
         <script id="link" type="text/nunjucks">
           <a-plane class="link" height="1" width="1"
@@ -44,7 +44,7 @@
       <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
         <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb"></a-entity>
         <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
+        <a-entity template="src: #link" data-src="#croix" data-thumb="#sechelt-thumb"></a-entity>
       </a-entity>
 
       <!-- Camera + cursor. -->
