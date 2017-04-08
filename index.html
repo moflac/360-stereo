@@ -23,6 +23,9 @@
         <img id="cubes" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
         <img id="sechelt" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
 		<img id="croix" crossorigin="anonymous" src="IMG_20160711_120611.vr.jpg">
+		<img id="station" crossorigin="anonymous" src="IMG_20160711_092710.vr.jpg">
+		<img id="sun" crossorigin="anonymous" src="IMG_20160716_122347.vr.jpg">
+		
         <!-- Image link template to be reused. -->
         <script id="link" type="text/nunjucks">
           <a-plane class="link" height="1" width="1"
@@ -42,8 +45,8 @@
 
       <!-- Image links. -->
       <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
-        <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb"></a-entity>
+        <a-entity template="src: #link" data-src="#station" data-thumb="#cubes-thumb"></a-entity>
+        <a-entity template="src: #link" data-src="#sun" data-thumb="#city-thumb"></a-entity>
         <a-entity template="src: #link" data-src="#croix" data-thumb="#sechelt-thumb"></a-entity>
       </a-entity>
 
