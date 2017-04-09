@@ -7,8 +7,10 @@
 AFRAME.registerComponent('set-image', {
   schema: {
     on: {type: 'string'},
-    target: {type: 'selector'},
-    src: {type: 'string'},
+    targetl: {type: 'selector'},
+	targetr: {type: 'selector'},
+    srcl: {type: 'string'},
+	srcr: {type: 'string'},
     dur: {type: 'number', default: 300}
   },
 
@@ -20,13 +22,17 @@ AFRAME.registerComponent('set-image', {
 
     el.addEventListener(data.on, function () {
       // Fade out image.
-      data.target.emit('set-image-fade');
+      data.targetl.emit('set-image-fade');
+	  data.targetr.emit('set-image-fade');
       // Wait for fade to complete.
       setTimeout(function () {
         // Set image.
-        data.target.setAttribute('material', 'src', data.src);
+        data.targetl.setAttribute('material', 'src', data.srcl);
+		data.targetr.setAttribute('material', 'src', data.srcr);
       }, data.dur);
+	  
     });
+	
   },
 
   /**
@@ -34,14 +40,27 @@ AFRAME.registerComponent('set-image', {
    */
   setupFadeAnimation: function () {
     var data = this.data;
-    var targetEl = this.data.target;
+    var targetEll = this.data.targetl;
+	var targetElr = this.data.targetr;
 
     // Only set up once.
-    if (targetEl.dataset.setImageFadeSetup) { return; }
-    targetEl.dataset.setImageFadeSetup = true;
+    if (targetEll.dataset.setImageFadeSetup) { return; }
+    targetEll.dataset.setImageFadeSetup = true;
+	
+	if (targetElr.dataset.setImageFadeSetup) { return; }
+    targetElr.dataset.setImageFadeSetup = true;
 
     // Create animation.
-    targetEl.setAttribute('animation__fade', {
+    targetEll.setAttribute('animation__fade', {
+      property: 'material.color',
+      startEvents: 'set-image-fade',
+      dir: 'alternate',
+      dur: data.dur,
+      from: '#FFF',
+      to: '#000'
+    });
+	
+	targetElr.setAttribute('animation__fade', {
       property: 'material.color',
       startEvents: 'set-image-fade',
       dir: 'alternate',
