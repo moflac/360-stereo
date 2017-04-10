@@ -18,5 +18,9 @@
     "aframe-scene",
     "vr",
     "webvr"
-  ]
+  ],
+  "dependencies": {
+    "aframe-draw-component": "~1.5.0",
+    "aframe-textwrap-component": "~1.0.1"
+  }
 }

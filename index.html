@@ -11,16 +11,16 @@
     <script src="https://npmcdn.com/aframe-template-component@3.0.1"></script>
     <script src="components/set-image.js"></script>
     <script src="components/update-raycaster.js"></script>
+	<script src="components/aframe-textwrap-component.min.js"></script>
 	<script src="https://cdn.rawgit.com/oscarmarinmiro/aframe-stereo-component/6db3472a301c7e90b5a4dbc0e08d8c4269b0f20e/dist/aframe-stereo-component.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/nunjucks/2.3.0/nunjucks.min.js"></script>
+	 
   </head>
   <body>
     <a-scene>
       <a-assets>
         
-        <img id="city-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
-        <img id="cubes-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
-        <img id="sechelt-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
+        
         <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
        
 		<img id="croix_l" crossorigin="anonymous" src="assets/img/croix_l.png">
@@ -29,13 +29,20 @@
 		<img id="mountain_r" crossorigin="anonymous" src="assets/img/mountain_r.png">
 		<img id="station_l" crossorigin="anonymous" src="assets/img/station_l.png">
 		<img id="station_r" crossorigin="anonymous" src="assets/img/station_r.png">
+		<img id="ranta_l" crossorigin="anonymous" src="assets/img/ranta_l.png">
+		<img id="ranta_r" crossorigin="anonymous" src="assets/img/ranta_r.png">
+		
+		<img id="croix_thumb" crossorigin="anonymous" src="assets/img/croix_thumb.png">
+		<img id="mountain_thumb" crossorigin="anonymous" src="assets/img/mountain_thumb.png">
+		<img id="station_thumb" crossorigin="anonymous" src="assets/img/station_thumb.png">
+		<img id="ranta_thumb" crossorigin="anonymous" src="assets/img/ranta_thumb.png">
 		
 		
 		
         <!-- Image link template to be reused. -->
         <script id="link" type="text/nunjucks">
           <a-plane class="link" height="1" width="1"
-            material="shader: flat; src: {{ thumb }}"
+			material="shader: flat; src: {{thumb}}"
             event-set__1="_event: mousedown; scale: 1 1 1"
             event-set__2="_event: mouseup; scale: 1.2 1.2 1"
             event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
@@ -52,10 +59,11 @@
 		<a-sky id="skyr" radius="5000" src="#station_r" stereo="eye:right"></a-sky>
 
       <!-- Image links. -->
-      <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
-        <a-entity template="src: #link" data-srcl="#station_l" data-srcr="#station_r" data-thumb="#cubes-thumb"></a-entity>
-        <a-entity template="src: #link" data-srcl="#mountain_l" data-srcr="#mountain_r" data-thumb="#city-thumb"></a-entity>
-        <a-entity template="src: #link" data-srcl="#croix_l" data-srcr="#croix_r" data-thumb="#sechelt-thumb"></a-entity>
+      <a-entity id="links" layout="type: line; margin: 1.5" position="-2 -3 -4" rotation="-30 0 0">
+        <a-entity template="src: #link" data-srcl="#station_l" data-srcr="#station_r" data-thumb="#station_thumb"></a-entity>
+        <a-entity template="src: #link" data-srcl="#mountain_l" data-srcr="#mountain_r" data-thumb="#mountain_thumb"></a-entity>
+        <a-entity template="src: #link" data-srcl="#croix_l" data-srcr="#croix_r" data-thumb="#croix_thumb"></a-entity>
+		<a-entity template="src: #link" data-srcl="#ranta_l" data-srcr="#ranta_r" data-thumb="#ranta_thumb"></a-entity>
       </a-entity>
 
       <!-- Camera + cursor. -->
