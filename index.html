@@ -1,91 +1,86 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>360&deg; Stereo Image</title>
-    <meta name="description" content="360&deg; Stereo Image">
-    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script> 
-    <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
-    <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
-    <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
-    <script src="https://npmcdn.com/aframe-template-component@3.0.1"></script>
-    <script src="components/set-image.js"></script>
-    <script src="components/update-raycaster.js"></script>
-	<script src="components/aframe-textwrap-component.min.js"></script>
-	<script src="components/aframe-stereo-component.min.js"></script>
-	<script src="components/play-sound.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/nunjucks/2.3.0/nunjucks.min.js"></script>
-	 
-  </head>
-  <body>
-  
-    <a-scene>
-      <a-assets timeout="10000">
-        
-        
-        <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
-     	<audio id="croix_sound" src="assets/sound/croix_sound.mp4"></audio>
-		<audio id="station_sound" src="assets/sound/station_sound.mp4"></audio>
-		<audio id="ranta_sound" src="assets/sound/ranta_sound.mp4"></audio>
-		<audio id="mountain_sound" src="assets/sound/mountain_sound.mp4"></audio>
-		<img id="croix_l" crossorigin="anonymous" src="assets/img/croix_l.png">
-		<img id="croix_r" crossorigin="anonymous" src="assets/img/croix_r.png">
-		<img id="mountain_l" crossorigin="anonymous" src="assets/img/mountain_l.png">
-		<img id="mountain_r" crossorigin="anonymous" src="assets/img/mountain_r.png">
-		<img id="station_l" crossorigin="anonymous" src="assets/img/station_l.png">
-		<img id="station_r" crossorigin="anonymous" src="assets/img/station_r.png">
-		<img id="ranta_l" crossorigin="anonymous" src="assets/img/ranta_l.png">
-		<img id="ranta_r" crossorigin="anonymous" src="assets/img/ranta_r.png">
-		
-		<img id="croix_thumb" crossorigin="anonymous" src="assets/img/croix_thumb.png">
-		<img id="mountain_thumb" crossorigin="anonymous" src="assets/img/mountain_thumb.png">
-		<img id="station_thumb" crossorigin="anonymous" src="assets/img/station_thumb.png">
-		<img id="ranta_thumb" crossorigin="anonymous" src="assets/img/ranta_thumb.png">
+	<head>
+		<meta charset="utf-8">
+		<title>360&deg; Stereo Image</title>
+		<meta name="description" content="360&deg; Stereo Image">
+		<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script> 
+		<script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-template-component@3.0.1"></script>
+		<script src="components/set-image.js"></script>
+		<script src="components/update-raycaster.js"></script>
+		<script src="components/aframe-textwrap-component.min.js"></script>
+		<script src="components/aframe-stereo-component.min.js"></script>
+		<script src="components/play-sound.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/nunjucks/2.3.0/nunjucks.min.js"></script>
+	</head>
+	
+	<body>
+		<a-scene>
+			<a-assets>
+				<audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+				<audio id="croix_sound" src="assets/sound/croix_sound.mp4"></audio>
+				<audio id="station_sound" src="assets/sound/station_sound.mp4" preload="auto"></audio>
+				<audio id="ranta_sound" src="assets/sound/ranta_sound.mp4"></audio>
+				<audio id="mountain_sound" src="assets/sound/mountain_sound.mp4"></audio>
+				<img id="croix_l" crossorigin="anonymous" src="assets/img/croix_l.png">
+				<img id="croix_r" crossorigin="anonymous" src="assets/img/croix_r.png">
+				<img id="mountain_l" crossorigin="anonymous" src="assets/img/mountain_l.png">
+				<img id="mountain_r" crossorigin="anonymous" src="assets/img/mountain_r.png">
+				<img id="station_l" crossorigin="anonymous" src="assets/img/station_l.png">
+				<img id="station_r" crossorigin="anonymous" src="assets/img/station_r.png">
+				<img id="ranta_l" crossorigin="anonymous" src="assets/img/ranta_l.png">
+				<img id="ranta_r" crossorigin="anonymous" src="assets/img/ranta_r.png">
+				<img id="croix_thumb" crossorigin="anonymous" src="assets/img/croix_thumb.png">
+				<img id="mountain_thumb" crossorigin="anonymous" src="assets/img/mountain_thumb.png">
+				<img id="station_thumb" crossorigin="anonymous" src="assets/img/station_thumb.png">
+				<img id="ranta_thumb" crossorigin="anonymous" src="assets/img/ranta_thumb.png">
 		
 		
 		
         <!-- Image link template to be reused. -->
-        <script id="link" type="text/nunjucks">
-          <a-plane class="link" height="1" width="1"
-			material="shader: flat; src: {{thumb}}"
-            event-set__1="_event: mousedown; scale: 1 1 1"
-            event-set__2="_event: mouseup; scale: 1.2 1.2 1"
-            event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
-            event-set__4="_event: mouseleave; scale: 1 1 1"
+				<script id="link" type="text/nunjucks">
+					<a-plane class="link" height="1" width="1"
+					material="shader: flat; src: {{thumb}}"
+					event-set__1="_event: mousedown; scale: 1 1 1"
+					event-set__2="_event: mouseup; scale: 1.2 1.2 1"
+					event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
+					event-set__4="_event: mouseleave; scale: 1 1 1"
 			
-			play-sound="on: click; src: {{ssound}}; loop: false"
-            set-image="on: click; targetl: #skyl; srcl: {{ srcl }}; targetr: #skyr; srcr: {{ srcr }}"
+					play-sound="on: click; src: {{ssound}}; loop: false"
+					set-image="on: click; targetl: #skyl; srcl: {{ srcl }}; targetr: #skyr; srcr: {{ srcr }}"
 			
-            update-raycaster="#cursor"></a-plane>
-        </script>
-      </a-assets>
+					update-raycaster="#cursor"></a-plane>
+				</script>
+			</a-assets>
 
-      <!-- 360-degree images for stereo. -->
-      <a-sky id="skyl" src="#station_l" stereo="eye:left"></a-sky>
-      <a-sky id="skyr" src="#station_r" stereo="eye:right"></a-sky>
+		<!-- 360-degree images for stereo. -->
+		<a-sky id="skyl" src="#station_l" stereo="eye:left"></a-sky>
+		<a-sky id="skyr" src="#station_r" stereo="eye:right"></a-sky>
 
-	  <!-- Station sound -->
+		<!-- Station sound -->
 		<a-entity sound="src: #station_sound; autoplay: true"></a-entity>
-
-      <!-- Camera + cursor. -->
-      <a-entity camera id="camera" look-controls stereocam="eye:left;">
-      <a-cursor id="cursor"
-          animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
-          animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
-          event-set__1="_event: mouseenter; color: springgreen"
-          event-set__2="_event: mouseleave; color: black"
-          raycaster="objects: .link"></a-cursor> 
 		  
-      </a-entity>
+		<!-- Camera + cursor. -->
+		<a-entity camera id="camera" look-controls stereocam="eye:left;">
+			<a-cursor id="cursor"
+			animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
+			animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
+			event-set__1="_event: mouseenter; color: springgreen"
+			event-set__2="_event: mouseleave; color: black"
+			raycaster="objects: .link"></a-cursor> 
+		</a-entity>
 	  
-	  <!-- Image links. -->
-      <a-entity id="links" layout="type: line; margin: 1.5" position="-2 -3 -4" rotation="-30 0 0">
-        <a-entity template="src: #link" data-srcl="#station_l" data-srcr="#station_r" data-thumb="#station_thumb" data-ssound="#station_sound"></a-entity>
-        <a-entity template="src: #link" data-srcl="#mountain_l" data-srcr="#mountain_r" data-thumb="#mountain_thumb" data-ssound="#mountain_sound"></a-entity>
-        <a-entity template="src: #link" data-srcl="#croix_l" data-srcr="#croix_r" data-thumb="#croix_thumb" data-ssound="#croix_sound"></a-entity>
-		<a-entity template="src: #link" data-srcl="#ranta_l" data-srcr="#ranta_r" data-thumb="#ranta_thumb" data-ssound="#ranta_sound"></a-entity>
-      </a-entity>
+		<!-- Image links. -->
+		<a-entity id="links" layout="type: line; margin: 1.5" position="-2 -3 -4" rotation="-30 0 0">
+			<a-entity template="src: #link" data-srcl="#station_l" data-srcr="#station_r" data-thumb="#station_thumb" data-ssound="#station_sound"></a-entity>
+			<a-entity template="src: #link" data-srcl="#mountain_l" data-srcr="#mountain_r" data-thumb="#mountain_thumb" data-ssound="#mountain_sound"></a-entity>
+			<a-entity template="src: #link" data-srcl="#croix_l" data-srcr="#croix_r" data-thumb="#croix_thumb" data-ssound="#croix_sound"></a-entity>
+			<a-entity template="src: #link" data-srcl="#ranta_l" data-srcr="#ranta_r" data-thumb="#ranta_thumb" data-ssound="#ranta_sound"></a-entity>
+		</a-entity>
 	  
-    </a-scene>
-  </body>
+		</a-scene>
+	</body>
 </html>
