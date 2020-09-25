@@ -64,7 +64,7 @@
 		<a-entity sound="src: #station_sound; autoplay: true"></a-entity>
 		  
 		<!-- Camera + cursor. -->
-		<a-entity id="rig" position="0 0 0" rotation="0 90 0">
+		<a-entity id="rig" position="0 0 0" rotation="0 0 0">
 			<a-entity camera id="camera" look-controls stereocam="eye:left;" position="0 1.7 0">
 				<a-cursor id="cursor"
 				animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
@@ -75,7 +75,7 @@
 				
 			</a-entity>
 		</a-entity>
-		<a-entity hand-controls laser-controls="hand: right"></a-entity> 
+		<a-entity laser-controls="hand: right"></a-entity> 
 		<a-entity oculus-touch-controls="hand: left" ></a-entity> 
 		<!-- Image links. -->
 		<a-entity id="links" layout="type: line; margin: 1.5" position="-2 -3 -4" rotation="-30 0 0">
