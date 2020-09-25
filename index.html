@@ -64,17 +64,18 @@
 		<a-entity sound="src: #station_sound; autoplay: true"></a-entity>
 		  
 		<!-- Camera + cursor. -->
-		<a-entity camera id="camera" look-controls stereocam="eye:left;" position="0 1.7 0">
-			<a-cursor id="cursor"
-			animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
-			animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
-			event-set__1="_event: mouseenter; color: springgreen"
-			event-set__2="_event: mouseleave; color: black"
-			raycaster="objects: .link"></a-cursor> 
-			<a-entity laser-controls="hand: right"></a-entity> 
-			<a-entity oculus-touch-controls="hand: left" ></a-entity> 
+		<a-entity id="rig" position="0 0 0" rotation="0 90 0"
+			<a-entity camera id="camera" look-controls stereocam="eye:left;" position="0 1.7 0">
+				<a-cursor id="cursor"
+				animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
+				animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 	0.1; dur: 1500"
+				event-set__1="_event: mouseenter; color: springgreen"
+				event-set__2="_event: mouseleave; color: black"
+				raycaster="objects: .link"></a-cursor> 
+				<a-entity laser-controls="hand: right"></a-entity> 
+				<a-entity oculus-touch-controls="hand: left" ></a-entity> 
+			</a-entity>
 		</a-entity>
-	  
 		<!-- Image links. -->
 		<a-entity id="links" layout="type: line; margin: 1.5" position="-2 -3 -4" rotation="-30 0 0">
 			<a-entity template="src: #link" data-srcl="#station_l" data-srcr="#station_r" data-thumb="#station_thumb" data-ssound="#station_sound"></a-entity>
